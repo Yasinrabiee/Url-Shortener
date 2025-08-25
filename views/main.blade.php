@@ -1,0 +1,132 @@
+@include('header')
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+	<div class="container">
+		<a class="navbar-brand" href="">Zaplink</a>
+		<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="navbarNav">
+			<ul class="navbar-nav me-auto">
+				<li class="nav-item">
+					<a class="nav-link active" href="">خانه</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="">لینک‌های من</a>
+				</li>
+			</ul>
+      <div class="d-flex">
+          <a href="" class="btn btn-primary me-2">پروفایل شما</a>
+          <a href="" class="btn btn-danger">خروج</a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<section class="hero-section mb-5">
+	<div class="container text-center">
+		<h1 class="display-4 fw-bold mb-4 text-center">لینک‌های خود را کوتاه و مدیریت کنید</h1>
+		<p class="lead mb-5 text-center">سرویس کوتاه کننده لینک با قابلیت‌های تحلیلی پیشرفته و مدیریت آسان</p>
+		
+		<div class="row justify-content-center">
+			<div class="col-lg-8">
+				<div class="url-form bg-white text-dark p-4">
+					<div class="text-center fs-5">
+						<span class="text-danger">توجه:</span>
+						لینک دادن به وب‌سایت‌های غیرمجاز ممنوع می‌باشد. 
+					</div>
+					<form action="" method="post" class="text-start">
+						<div class="mb-3">
+							<label for="target">
+								لینک خود را وارد کنید<span class="text-danger">*</span>:
+							</label>
+							<input type="text" dir="ltr" id="target" name="target" 
+							class="form-control" placeholder="https://">
+						</div>
+
+						<div class="mb-3">
+							<div class="form-check">
+							  <input class="form-check-input" type="checkbox"
+							  id="random" name="random">
+							  <label class="form-check-label" for="randomUrl">
+							  	آدرس تصادفی
+							  </label>
+							</div>
+						</div>
+
+						<div class="mb-3">
+							<label for="uri">
+								آدرس کوتاه دلخواه:
+							</label>
+							<input type="text" dir="ltr" id="uri" name="uri"
+							class="form-control short-link" data-table="link"
+							data-field="uri">
+							<div id="waiting"></div>
+							<div class="invalid-feedback" id="feedback"></div>
+						</div>
+
+						<div class="mb-3">
+							<div class="form-check">
+							  <input class="form-check-input" type="checkbox"
+							  id="secure" name="secure">
+							  <label class="form-check-label" for="randomUrl">
+							  	آدرس رمزدار
+							  </label>
+							</div>
+						</div>
+
+						<div class="mb-3" id="password-field">
+							<label for="password">
+								رمزعبور:
+							</label>
+							<input type="password" dir="ltr" id="password" name="password"
+							class="form-control" disabled>
+						</div>
+
+						<div class="d-grid">
+							<button type="submit" name="create" class="btn btn-primary btn-lg w-100">
+								<i class="bi bi-scissors"></i> کوتاه کن
+							</button>
+						</div>
+						<div class="mt-3">
+							
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+<section class="container mb-5">
+	<h2 class="text-center mb-5">چرا Zaplink را انتخاب کنید؟</h2>
+	<div class="row g-4">
+		<div class="col-md-4">
+			<div class="text-center p-4">
+				<div class="features-icon mb-3">
+					<i class="bi bi-speedometer2"></i>
+				</div>
+				<h3>سریع و آسان</h3>
+				<p>کوتاه کردن لینک در کمتر از چند ثانیه</p>
+			</div>
+		</div>
+		<div class="col-md-4">
+			<div class="text-center p-4">
+				<div class="features-icon mb-3">
+					<i class="bi bi-bar-chart"></i>
+				</div>
+				<h3>آمار دقیق</h3>
+				<p>تحلیل کامل بازدیدها، موقعیت جغرافیایی و دستگاه‌های کاربران</p>
+			</div>
+		</div>
+		<div class="col-md-4">
+			<div class="text-center p-4">
+				<div class="features-icon mb-3">
+					<i class="bi bi-shield-lock"></i>
+				</div>
+				<h3>امن و مطمئن</h3>
+				<p>لینک‌های شما با بالاترین سطح امنیتی ذخیره و مدیریت می‌شوند</p>
+			</div>
+		</div>
+	</div>
+</section>
+@include('footer')
