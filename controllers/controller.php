@@ -131,15 +131,92 @@
 
 		public function createLink()
 		{
-			$target = ACC::post('target');
-			$uri = ACC::post('uri');
-			$password = ACC::post('password');
-			$success = ACC::success('تست');
+			$params = [];
+			$params['target'] = ACC::post('target');
+			$params['uri'] = ACC::post('uri');
+			$params['password'] = ACC::post('password');
+			
+			if (empty($params['target']) || empty($params['uri']))
+			{
+				$error = ACC::error('لطفا فیلدهای الزامی را پر نمایید.');
+			}
+			else
+			{
+				if (!filter_var($params['target'], FILTER_VALIDATE_URL))
+				{
+					$error = ACC::error('لینک مورد نظر شما نامعتبر است!');
+				}
+				else
+				{
+					if (in_array($params['target'], _SITES_BLACK_LIST))
+					{
+						$error = ACC::error('لینک دادن به سایت های غیرمجاز ممنوع است!');
+					}
+					else
+					{
+						# Now insert record
+						if (Link::insert($params))
+						{
+							$success = ACC::success("
+								لینک شما با موفقیت ساخته شد...<br>
+								<a href='localhost/zaplink/{$params['uri']}' id='customCreatedLink'>localhost/zaplink/{$params['uri']}</a><br>
+								<div id='clipboard' style='cursor: pointer;' class='badge bg-primary-subtle py-1 border border-primary-subtle text-primary-emphasis'>
+								کپی در کلیپ برد
+								</div>
+								<div id='result' class='mt-1'></div>
+							");
+						}
+						else
+						{
+							$error = ACC::errorCodeInfo('مشکلی در ساخت لینک به وجود آمد...');
+						}
+					}
+				}
+			}
+
 			echo $this->blade->run('main',
 			[
 				'success' => $success ?? '',
 				'error' => $error ?? ''
 			]);
+		}
+
+		public function redirect($uri)
+		{
+			$recordInfo = Link::selectOne($uri) ?? '';
+			if (!empty($recordInfo))
+			{
+				if (!empty($recordInfo['password']))
+				{
+					echo $this->blade->run('passwordForm', compact('uri'));
+				}
+				else
+				{
+					header('location:' . $recordInfo['target']);
+				}
+			}
+			else
+			{
+				echo 'لینک اشتباه است.';
+			}
+		}
+
+		public function viewLink()
+		{
+			$password = !empty(ACC::post('password')) ? md5(ACC::post('password')) : '';
+			$uri = ACC::post('uri');
+			$recordInfo = Link::selectOne($uri);
+
+			if ($password == $recordInfo['password'])
+			{
+				header('location:' . $recordInfo['target']);
+			}
+			else
+			{
+				$error = ACC::error('رمز مشاهده نادرست است.');
+			}
+
+			echo $this->blade->run('passwordForm', compact('error', 'uri'));
 		}
 	}
 ?>

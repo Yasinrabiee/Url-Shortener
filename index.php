@@ -40,6 +40,17 @@
     $controller->logout();
 	});
 
+	$router->get('/([a-zA-Z0-9\-]+)', function($uri)
+	{
+    $controller = new controller();
+    $controller->redirect($uri);
+	});
+	$router->post('/([a-zA-Z0-9\-]+)', function($uri)
+	{
+    $controller = new controller();
+    $controller->viewLink($uri);
+	});
+
 	# Custom 404 handling
 	$router->set404(function()
 	{

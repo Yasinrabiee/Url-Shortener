@@ -1,11 +1,7 @@
 $('#clipboard').click(function() {
 	let content = $('#customCreatedLink').html();
 	navigator.clipboard.writeText(content);
-	$('#result').append(`
-		<span class="badge bg-light-subtle py-1 border border-danger-subtle text-dark-emphasis">
-			در کلیپ برد ذخیره شد.
-		</span><br><br>
-	`);
+	alert('در کلیپ برد ذخیره شد.');
 });
 
 
@@ -27,42 +23,42 @@ $('.nav-item button[data-bs-toggle="tab"]').on('shown.bs.tab', function(e) {
 
 
 // Validate uri(username) field: AJAX Request
-$("#uri").change(function() {
-	$("#waiting").html(spinner);
-	$("#feedback").empty();
+// $("#uri").change(function() {
+// 	$("#waiting").html(spinner);
+// 	$("#feedback").empty();
 
-  $.ajax({
-    url: "ajax.php",
-    type: "POST",
-    data: {
-      op: "validate-field",
-      field: $(this).data('field'),
-      fieldValue: $(this).val(),
-      table: $(this).data('table')
-    },
-    success: function(data, status) {
-      if (data != "")
-      {
-      	$("#uri").removeClass("is-valid")
-        $("#uri").addClass("is-invalid");
-        $("#waiting").empty();
-        $("#feedback").html(data);
-      }
-      else
-      { 
-        $("#uri").removeClass("is-invalid");
-        $("#uri").addClass("is-valid");
-        $("#waiting").empty();
-      }
-    },
-    error: function() {
-      $("#uri").removeClass("is-valid");
-      $("#uri").addClass("is-invalid");
-      $("#waiting").hide();
-      $("#feedback").html('مشکلی در اتصال به سرور به وجود آمد...');
-    } 
-  });   
-});
+//   $.ajax({
+//     url: "ajax.php",
+//     type: "POST",
+//     data: {
+//       op: "validate-field",
+//       field: $(this).data('field'),
+//       fieldValue: $(this).val(),
+//       table: $(this).data('table')
+//     },
+//     success: function(data, status) {
+//       if (data != "")
+//       {
+//       	$("#uri").removeClass("is-valid")
+//         $("#uri").addClass("is-invalid");
+//         $("#waiting").empty();
+//         $("#feedback").html(data);
+//       }
+//       else
+//       { 
+//         $("#uri").removeClass("is-invalid");
+//         $("#uri").addClass("is-valid");
+//         $("#waiting").empty();
+//       }
+//     },
+//     error: function() {
+//       $("#uri").removeClass("is-valid");
+//       $("#uri").addClass("is-invalid");
+//       $("#waiting").hide();
+//       $("#feedback").html('مشکلی در اتصال به سرور به وجود آمد...');
+//     } 
+//   });   
+// });
 
 $('#random').change(function() {
   if ($(this).is(':checked'))

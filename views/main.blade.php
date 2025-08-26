@@ -40,10 +40,11 @@
 								لینک خود را وارد کنید<span class="text-danger">*</span>:
 							</label>
 							<input type="text" dir="ltr" id="target" name="target" 
-							class="form-control" placeholder="https://">
+							class="form-control" placeholder="https://" 
+							value="{{ ACC::post('target') }}">
 						</div>
 
-						<div class="mb-3">
+						<!-- <div class="mb-3">
 							<div class="form-check">
 							  <input class="form-check-input" type="checkbox"
 							  id="random" name="random">
@@ -51,15 +52,15 @@
 							  	آدرس تصادفی
 							  </label>
 							</div>
-						</div>
+						</div> -->
 
 						<div class="mb-3">
 							<label for="uri">
-								آدرس کوتاه دلخواه:
+								آدرس کوتاه دلخواه<span class="text-danger">*</span>:
 							</label>
 							<input type="text" dir="ltr" id="uri" name="uri"
 							class="form-control short-link" data-table="link"
-							data-field="uri">
+							data-field="uri" value="{{ ACC::post('uri') }}">
 							<div id="waiting"></div>
 							<div class="invalid-feedback" id="feedback"></div>
 						</div>
@@ -67,14 +68,11 @@
 						<div class="mb-3">
 							<div class="form-check">
 							  <input class="form-check-input" type="checkbox"
-							  id="secure" name="secure">
+							  id="secure" name="secure" {{ isset($_POST['secure']) ? 'checked' : '' }}>
 							  <label class="form-check-label" for="secure">
 							  	آدرس رمزدار
 							  </label>
 							</div>
-						</div>
-
-						<div class="mb-3" id="password-field">
 							<label for="password">
 								رمزعبور:
 							</label>

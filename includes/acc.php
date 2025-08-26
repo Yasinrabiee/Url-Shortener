@@ -95,7 +95,10 @@
 			    'whereArray' => [$column => $value]
 			];
 			
-			return DB::select($params)[0];
+			if (isset(DB::select($params)[0]))
+			{
+				return DB::select($params)[0];
+			}
 		}
 
 		public static function selectCount($table, $column, $value)
