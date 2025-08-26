@@ -14,6 +14,11 @@
     $controller = new controller();
     $controller->index();
 	});
+	$router->post('/', function()
+	{
+    $controller = new controller();
+    $controller->createLink();
+	});
 
 	$router->get('/login', function()
 	{
@@ -22,19 +27,14 @@
 	});
 	$router->post('/login', function()
 	{
-    $controller = new controller();
-    $controller->loginHandle();
+  	$controller = new controller();
+  	$controller->loginHandle();
 	});
 
-	$router->get('/signup', function()
+	$router->get('/logout', function()
 	{
     $controller = new controller();
-    $controller->signupIndex();
-	});
-	$router->post('/signup', function()
-	{
-    $controller = new controller();
-    $controller->signupHandle();
+    $controller->logout();
 	});
 
 	# Custom 404 handling

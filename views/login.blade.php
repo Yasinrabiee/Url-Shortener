@@ -1,42 +1,129 @@
 @include('header')
 <div class="container">
-	<div class="login-container">
-		<div class="alert alert-info text-center">
-		  کاربر محترم لطفا جهت استفاده از سرویس کوتاه کننده لینک و دسترسی به اطلاعات
-		  دقیق لینک‌های خود ابتدا وارد سیستم شوید.
-		</div>
-		<div class="login-header text-center">
-		  <div class="bi bi-person-circle text-center mb-0"></div>
-		  <div class="fs-3">ورود به سیستم</div>
-		</div>
-		<form action="" method="post">
-		  <div class="mb-3">
-		    <label for="username" class="form-label">نام کاربری</label>
-		    <input type="text" autofocus name="username" dir="ltr" class="form-control" id="username" >
-		  </div>
-		  <div class="mb-3">
-		    <label for="password" class="form-label">رمز عبور</label>
-		    <input type="password" name="password" dir="ltr" class="form-control" id="password">
-		  </div>
-		  <div class="d-flex flex-column gap-1">
-		  	<button type="submit" name="login" class="btn btn-primary btn-login">
-		  	  <i class="bi bi-box-arrow-in-left"></i> ورود
-		  	</button>
-		  	<div class="d-grid">
-		  		<a href="{{ ACC::asset('signup') }}" class="btn btn-outline-primary btn-login">
-		  			<i class="bi bi-person-plus"></i>
-		  			ثبت نام
-		  		</a>
-		  	</div>
-		  </div>
-		  <div class="my-2">
-		    {!! $success ?? '' !!}
-		    {!! $error ?? '' !!}
-		  </div>
-		  <div class="forgot-password text-center">
-		    <a href=""><i class="bi bi-question-circle"></i> رمز عبور خود را فراموش کرده اید؟</a>
-		  </div>
-		</form>
-	</div>
+  <div class="login-container">
+    <div class="alert alert-info text-center">
+      کاربر محترم لطفا جهت استفاده از سرویس کوتاه کننده لینک و دسترسی به اطلاعات
+      دقیق لینک‌های خود ابتدا وارد سیستم شوید.
+    </div>
+    <!-- Nav tabs -->
+    <ul class="nav nav-tabs justify-content-center gap-6 mb-5" id="myTab" role="tablist">
+      <li class="nav-item" role="presentation">
+        <button class="nav-link active" id="home-tab" data-bs-toggle="tab"
+        data-bs-target="#login-tab" type="button" role="tab"
+        aria-controls="login-tab" aria-selected="false">
+          ورود به سیستم
+        </button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link" id="disabled-tab" data-bs-toggle="tab"
+        data-bs-target="#signup-tab" type="button" role="tab"
+        aria-controls="signup-tab" aria-selected="true">
+          ثبت نام
+        </button>
+      </li>
+    </ul>
+
+    <!-- Content of nav tabs -->
+
+    <div class="tab-content" id="myTabContent">
+      <!-- Login tab -->
+      <div class="tab-pane show active" id="login-tab" role="tabpanel"
+      aria-labelledby="home-tab" tabindex="0">
+
+        <div class="login-header text-center">
+          <div class="bi bi-person-circle text-center mb-0"></div>
+          <div class="fs-3">ورود به سیستم</div>
+        </div>
+        <form action="" method="post">
+          <div class="mb-3">
+            <label for="username" class="form-label">نام کاربری</label>
+            <input type="text" name="username" dir="ltr" class="form-control" id="username" autofocus>
+          </div>
+          <div class="mb-3">
+            <label for="password" class="form-label">رمز عبور</label>
+            <input type="password" name="password" dir="ltr" class="form-control" id="password">
+          </div>
+          <button type="submit" name="signin" class="btn btn-primary btn-login">
+            <i class="bi bi-box-arrow-in-left"></i> ورود
+          </button>
+          <div class="my-2">
+            {!! $successSignIn ?? '' !!}
+            {!! $errorSignIn ?? '' !!}
+          </div>
+          <!-- <div class="forgot-password text-center">
+            <a href=""><i class="bi bi-question-circle"></i> رمز عبور خود را فراموش کرده اید؟</a>
+          </div> -->
+        </form>
+      </div>
+
+      <!-- SignUp tab -->
+      <div class="tab-pane" id="signup-tab" role="tabpanel"
+      aria-labelledby="profile-tab" tabindex="0">
+        <div class="login-header text-center">
+          <div class="bi bi-person-circle text-center mb-0"></div>
+          <div class="fs-3">ثبت نام</div>
+        </div>
+        <form action="" method="post">
+
+          <div class="my-2">
+            {!! $successSignUp ?? '' !!}
+            {!! $errorSignUp ?? '' !!}
+          </div>
+
+          <div class="mb-3">
+            <label for="uri" class="form-label">
+              نام کاربری<span class="text-danger">*</span>:
+            </label>
+            <input type="text" autofocus name="username" dir="ltr"
+            class="form-control" id="uri"  maxlength="20" data-table="user"
+            data-field="username" value="{{ ACC::post('username') }}">
+
+            <div id="waiting"></div>
+            <div class="invalid-feedback" id="feedback"></div>
+            <small class="text-muted">
+              (کاراکترهای مجاز: A-Z a-z 0-9 _ طول مجاز: 1 تا 20 کاراکتر)
+            </small>
+          </div>
+
+          <div class="mb-3">
+            <label for="password" class="form-label">
+              رمز عبور<span class="text-danger">*</span>:
+            </label>
+            <input type="password" name="password" dir="ltr" class="form-control"
+            id="password" value="{{ ACC::post('password') }}">
+          </div>
+
+          <div class="mb-3">
+            <label for="fname" class="form-label">
+              نام<span class="text-danger">*</span>:
+            </label>
+            <input type="text" name="fname" class="form-control" id="fname"
+            value="{{ ACC::post('fname') }}">
+          </div>
+
+          <div class="mb-3">
+            <label for="lname" class="form-label">
+              نام خانوادگی<span class="text-danger">*</span>:
+            </label>
+            <input type="text" name="lname" class="form-control" id="lname"
+            value="{{ ACC::post('lname') }}">
+          </div>
+
+          <div class="mb-3">
+            <label for="email" class="form-label">
+              ایمیل<span class="text-danger">*</span>:
+            </label>
+            <input type="text" name="email" dir="ltr" class="form-control"
+            id="email" value="{{ ACC::post('email') }}">
+          </div>
+
+          <button type="submit" name="signup" class="btn btn-primary btn-login">
+            <i class="bi bi-person-plus"></i>
+            ثبت نام
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
 </div>
 @include('footer')
