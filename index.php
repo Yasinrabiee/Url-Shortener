@@ -16,8 +16,11 @@
 	});
 	$router->post('/', function()
 	{
-    $controller = new controller();
-    $controller->createLink();
+    if (isset($_POST['create']))
+    {
+    	$controller = new controller();
+    	$controller->createLink();
+    }
 	});
 
 	$router->get('/login', function()

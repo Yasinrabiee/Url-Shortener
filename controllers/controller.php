@@ -1,5 +1,6 @@
 <?php
 	require_once __DIR__.'/../models/UserModel.php';
+	require_once __DIR__.'/../models/LinkModel.php';
 
 	use eftec\bladeone\BladeOne;
 
@@ -130,8 +131,10 @@
 
 		public function createLink()
 		{
-			echo ACC::dump($_POST);
-
+			$target = ACC::post('target');
+			$uri = ACC::post('uri');
+			$password = ACC::post('password');
+			$success = ACC::success('تست');
 			echo $this->blade->run('main',
 			[
 				'success' => $success ?? '',
