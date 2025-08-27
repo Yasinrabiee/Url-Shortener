@@ -16,7 +16,7 @@
       </div>
       <div class="mb-3">
         <label for="password">رمز مشاهده<span class="text-danger">*</span>:</label>
-        <input autofocus type="text" name="password" id="password" class="form-control" dir="ltr">
+        <input autofocus type="password" name="password" id="password" class="form-control" dir="ltr">
       </div>
       <div>
         <input type="hidden" name="uri" value="{{ $uri }}">
