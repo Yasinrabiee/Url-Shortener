@@ -8,17 +8,15 @@
 
 	$router = new Router();
 
-	$exceptions =
-	[
-		'/login',
-		'/([a-zA-Z0-9\-]+)',
-		'/redirect'
-	];
-
 	# Auth middleware
 	$router->before('GET|POST', '/(.*)', function($param)
 	{
-		
+		$param = '/'.$param;
+		if (preg_match('/^\/r\/[a-z]+\?$/', $param))
+		{
+			$controller = new controller();
+			$controller->redirect();
+		}
 		
 		$middleware = new Auth();
 		$middleware->handle();
@@ -53,12 +51,12 @@
     $controller->logout();
 	});
 
-	$router->get('/([a-zA-Z0-9\-]+)', function($uri)
+	$router->get('/(r\/[a-zA-Z0-9]+\?$)', function($uri)
 	{
     $controller = new controller();
     $controller->redirect($uri);
 	});
-	$router->post('/([a-zA-Z0-9\-]+)', function($uri)
+	$router->post('/(r\/[a-zA-Z0-9]+\?$)', function($uri)
 	{
     $controller = new controller();
     $controller->viewLink($uri);
