@@ -2,13 +2,29 @@
 	use Bramus\Router\Router;
 
 	require_once 'vendor/autoload.php';
-	require_once 'controllers/controller.php';
 	require_once 'main.php';
+	require_once 'middlewares/auth.php';
+	require_once 'controllers/controller.php';
 
-	# Create instance of the RouterClass
 	$router = new Router();
 
-	# Define routes
+	$exceptions =
+	[
+		'/login',
+		'/([a-zA-Z0-9\-]+)',
+		'/redirect'
+	];
+
+	# Auth middleware
+	$router->before('GET|POST', '/(.*)', function($param)
+	{
+		
+		
+		$middleware = new Auth();
+		$middleware->handle();
+	});
+
+
 	$router->get('/', function()
 	{
     $controller = new controller();
@@ -16,11 +32,8 @@
 	});
 	$router->post('/', function()
 	{
-    if (isset($_POST['create']))
-    {
-    	$controller = new controller();
-    	$controller->createLink();
-    }
+		$controller = new controller();
+		$controller->createLink();
 	});
 
 	$router->get('/login', function()
@@ -51,13 +64,11 @@
     $controller->viewLink($uri);
 	});
 
-	# Custom 404 handling
 	$router->set404(function()
 	{
   	header('HTTP/1.1 404 Not Found');
 		echo "Not Found!";  
 	});
 
-	# Run routes
 	$router->run();
 ?>
