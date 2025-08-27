@@ -159,7 +159,7 @@
 						{
 							$success = ACC::success("
 								لینک شما با موفقیت ساخته شد...<br>
-								<a href='localhost/zaplink/{$params['uri']}' id='customCreatedLink'>localhost/zaplink/{$params['uri']}</a><br>
+								<a href='localhost/zaplink/r/{$params['uri']}' id='customCreatedLink'>localhost/zaplink/r/{$params['uri']}</a><br>
 								<div id='clipboard' style='cursor: pointer;' class='badge bg-primary-subtle py-1 border border-primary-subtle text-primary-emphasis'>
 								کپی در کلیپ برد
 								</div>

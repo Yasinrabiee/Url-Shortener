@@ -12,10 +12,9 @@
 	$router->before('GET|POST', '/(.*)', function($param)
 	{
 		$param = '/'.$param;
-		if (preg_match('/^\/r\/[a-z]+\?$/', $param))
+		if (preg_match('/^\/r\/[a-zA-Z0-9]+\/?$/', $param))
 		{
-			$controller = new controller();
-			$controller->redirect();
+			return;
 		}
 		
 		$middleware = new Auth();
@@ -51,12 +50,12 @@
     $controller->logout();
 	});
 
-	$router->get('/(r\/[a-zA-Z0-9]+\?$)', function($uri)
+	$router->get('/r/([a-zA-Z0-9\-]+)', function($uri)
 	{
     $controller = new controller();
     $controller->redirect($uri);
 	});
-	$router->post('/(r\/[a-zA-Z0-9]+\?$)', function($uri)
+	$router->post('/r/([a-zA-Z0-9\-]+)', function($uri)
 	{
     $controller = new controller();
     $controller->viewLink($uri);
