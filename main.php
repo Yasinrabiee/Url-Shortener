@@ -13,7 +13,9 @@
 	$link = DB::connect();
 
 	$cookie = isset($_SESSION[_AUTH_NAME]) ? 0 : 1;
-	$userpass = isset($_SESSION[_AUTH_NAME]) ? $_SESSION[_AUTH_NAME] : (isset($_COOKIE[_AUTH_NAME]) ? $_COOKIE[_AUTH_NAME] : '');
+	$userpass = isset($_SESSION[_AUTH_NAME]) ? $_SESSION[_AUTH_NAME] :
+	(isset($_COOKIE[_AUTH_NAME]) ? $_COOKIE[_AUTH_NAME] : '');
+	
 	if (!empty($userpass))
 	{
 		$userpass = explode(':', $userpass);
@@ -33,6 +35,7 @@
 		else
 		{
 			$isLoggedIn = false;
+			
 			header('location: ' . ACC::asset('/logout'));
 		}
 	}

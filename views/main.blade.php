@@ -8,15 +8,15 @@
 		<div class="collapse navbar-collapse" id="navbarNav">
 			<ul class="navbar-nav me-auto">
 				<li class="nav-item">
-					<a class="nav-link active" href="">خانه</a>
+					<a class="nav-link active" href="{{ ACC::asset('') }}">خانه</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" href="">لینک‌های من</a>
+					<a class="nav-link" href="{{ ACC::asset('links') }}">لینک‌های من</a>
 				</li>
 			</ul>
       <div class="d-flex">
-          <a href="" class="btn btn-primary me-2">پروفایل شما</a>
-          <a href="" class="btn btn-danger">خروج</a>
+          <a href="{{ ACC::asset('profile') }}" class="btn btn-primary me-2">پروفایل شما</a>
+          <a href="{{ ACC::asset('logout') }}" class="btn btn-danger">خروج</a>
       </div>
     </div>
   </div>
