@@ -230,6 +230,40 @@
 		public function editProfile()
 		{
 			$params = [];
+			$params['id'] = $GLOBALS['userInfo'][0]['id'];
+			$params['fname'] = ACC::post('fname');
+			$params['lname'] = ACC::post('lname');
+			$params['email'] = ACC::post('email');
+
+			if (empty($params['fname']) || empty($params['lname']) || empty($params['email']))
+			{
+				$error = ACC::error('لطفا فیلدهای الزامی را پر نمایید.');
+			}
+			else
+			{
+				if (!filter_var($params['email'], FILTER_VALIDATE_EMAIL))
+				{
+				  $error = ACC::error('ایمیل نامعتبر است!');
+				}
+				else
+				{
+					if (User::update($params))
+					{
+						$success = ACC::success('پروفایل شما با موفقیت ویرایش شد.');
+					}
+					else
+					{
+						$error = ACC::errorCodeInfo('مشکلی در ثبت تغییرات به وجود آمد.');
+					}
+				}
+			}
+
+			echo $this->blade->run('profile',
+			[
+				'userInfo' => $GLOBALS['userInfo'][0],
+				'success' => $success ?? '',
+				'error' => $error ?? ''
+			]);
 		}
 	}
 ?>

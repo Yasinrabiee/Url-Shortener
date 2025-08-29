@@ -36,9 +36,19 @@
 			return false;
 		}
 
-		public function update($params)
+		public static function update($params)
 		{
+			$dbParams = [];
+			$dbParams['table'] = 'user';
+			$dbParams['where'] = "id = {$params['id']}";
+			$dbParams['fields'] = $params;
 			
+			if (DB::update($dbParams))
+			{
+			 	return true;
+			} 
+
+			return false;
 		}
 	}
 ?>
