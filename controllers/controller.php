@@ -270,5 +270,17 @@
 		{
 			echo $this->blade->run('dashboard');
 		}
+
+		public function deleteLink($id)
+		{
+			if (Link::delete($id))
+			{
+				header('location:' . ACC::asset('/links?delete=ok'));
+			}
+			else
+			{
+				header('location:' . ACC::asset('/links?delete=error'));
+			}
+		}
 	}
 ?>

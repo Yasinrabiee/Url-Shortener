@@ -78,6 +78,12 @@
     $controller->linksIndex();
 	});
 
+	$router->get('/delete/id/(\d+)', function($id)
+	{
+		$controller = new controller();
+		$controller->deleteLink($id);
+	});
+
 	$router->set404(function()
 	{
   	header('HTTP/1.1 404 Not Found');

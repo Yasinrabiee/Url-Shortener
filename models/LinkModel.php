@@ -25,5 +25,20 @@
 		{
 			return ACC::select('link', 'uri', $uri);
 		}
+
+		public static function delete($id)
+		{
+			$params = [];
+			$params['table'] = 'link';
+			$params['column'] = 'id';
+			$params['ids'] = [$id];
+			
+			if (DB::delete($params) > 0)
+			{
+				return true;
+			}
+
+			return false;
+		}
 	}
 ?>
