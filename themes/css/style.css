@@ -101,6 +101,6 @@ a {
   margin-top: 10px;
 }
 
-.form-control {
+.form-control,.form-select {
   border-width: 1px;
 }

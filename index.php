@@ -55,12 +55,6 @@
     $controller->viewLink($uri);
 	});
 
-	$router->get('/logout', function()
-	{
-    $controller = new controller();
-    $controller->logout();
-	});
-
 	$router->get('/profile', function()
 	{
     $controller = new controller();
@@ -72,6 +66,17 @@
     $controller->editProfile();
 	});
 
+	$router->get('/logout', function()
+	{
+    $controller = new controller();
+    $controller->logout();
+	});
+
+	$router->get('/links', function()
+	{
+    $controller = new controller();
+    $controller->linksIndex();
+	});
 
 	$router->set404(function()
 	{

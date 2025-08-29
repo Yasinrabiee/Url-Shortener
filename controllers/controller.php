@@ -265,5 +265,10 @@
 				'error' => $error ?? ''
 			]);
 		}
+
+		public function linksIndex()
+		{
+			echo $this->blade->run('dashboard');
+		}
 	}
 ?>

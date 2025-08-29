@@ -1,0 +1,111 @@
+<?php echo $this->runChild('header'); ?>
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+ <div class="container">
+ <a class="navbar-brand" href="./">Zaplink</a>
+ <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+ <span class="navbar-toggler-icon"></span>
+ </button>
+ <div class="collapse navbar-collapse" id="navbarNav">
+ <ul class="navbar-nav me-auto">
+ <li class="nav-item">
+ <a class="nav-link" href="./">خانه</a>
+ </li>
+ <li class="nav-item">
+ <a class="nav-link active" href="">لینک‌های من</a>
+ </li>
+ </ul>
+ <div class="d-flex">
+ <a href="./profile.php" class="btn btn-primary me-2">پروفایل شما</a>
+ <a href="./logout.php" class="btn btn-danger">خروج</a>
+ </div>
+ </div>
+ </div>
+</nav>
+
+<div class="container my-5">
+ <div class="reference-list" data-references="post">
+
+ <div class="toolbar mb-3">
+ <span class="num-of-records small h-100 px-3 d-flex align-items-center">
+ 	27 رکورد
+ </span>
+ <input type="hidden" class="n2m" value="false">
+ <div class="page-number-container d-flex align-items-center">
+ <small class="text-end">صفحه: </small>
+ <select class="form-select form-select-sm page-number" dir="ltr">
+ <option>1</option>
+ <option>2</option>
+ <option>3</option>
+ <option>4</option>
+ </select>
+
+ <small class="text-end text-nowrap">در هر صفحه: </small>
+ <select class="form-select form-select-sm page-limit" dir="ltr">
+ <option value="15">15</option>
+ <option value="50">50</option>
+ <option value="100">100</option>
+ <option value="200">200</option>
+ <option value="10000000" dir="rtl">همه</option>
+ </select>
+ </div>
+ </div>
+
+ <div class="table-responsive">
+ <input type="hidden" class="orderby" value="id">
+ <input type="hidden" class="sortby" value="desc">
+ <table class="table table-bordered table-striped table-sm">
+ <thead>
+ <tr>
+ <th class="tools-column" style="z-index: 100;">
+ امکانات
+ </th>
+ <th style="min-width: 100px">
+ <input type="search" data-name="id" placeholder="آیدی" 
+ class="form-control form-control-sm filter">
+ <center>
+ <i class="bi bi-caret-up btn btn-xsm" data-sort="asc"></i>
+ <i class="bi bi-caret-down btn btn-xsm" data-sort="desc"></i>
+ </center>
+ </th>
+
+ <th style="min-width: 100px">
+ <input type="search" data-name="uri" placeholder="لینک کوتاه" 
+ class="form-control form-control-sm filter">
+ <center>
+ <i class="bi bi-caret-up btn btn-xsm" data-sort="asc"></i>
+ <i class="bi bi-caret-down btn btn-xsm" data-sort="desc"></i>
+ </center>
+ </th>
+
+ <th style="min-width: 100px">
+ <input type="search" data-name="target" placeholder="لینک اصلی" 
+ class="form-control form-control-sm filter">
+ <center>
+ <i class="bi bi-caret-up btn btn-xsm" data-sort="asc"></i>
+ <i class="bi bi-caret-down btn btn-xsm" data-sort="desc"></i>
+ </center>
+ </th>
+
+ <th style="min-width: 100px">
+ <input type="search" data-name="category" placeholder="تاریخ افزودن"
+ class="form-control form-control-sm filter">
+ <center>
+ <i class="bi bi-caret-up btn btn-xsm" data-sort="asc"></i>
+ <i class="bi bi-caret-down btn btn-xsm" data-sort="desc"></i>
+ </center>
+ </th>
+ </tr>
+ </thead>
+ <tbody>
+ 
+ </tbody>
+ </table>
+ </div>
+ </div>
+</div>
+
+<br><br><br><br>
+<br><br><br><br>
+<br><br><br><br>
+<?php echo $this->runChild('footer'); ?>
