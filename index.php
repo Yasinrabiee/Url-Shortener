@@ -44,12 +44,6 @@
   	$controller->loginHandle();
 	});
 
-	$router->get('/logout', function()
-	{
-    $controller = new controller();
-    $controller->logout();
-	});
-
 	$router->get('/r/([a-zA-Z0-9\-]+)', function($uri)
 	{
     $controller = new controller();
@@ -60,6 +54,24 @@
     $controller = new controller();
     $controller->viewLink($uri);
 	});
+
+	$router->get('/logout', function()
+	{
+    $controller = new controller();
+    $controller->logout();
+	});
+
+	$router->get('/profile', function()
+	{
+    $controller = new controller();
+    $controller->handleProfileForm();
+	});
+	$router->post('/profile', function()
+	{
+    $controller = new controller();
+    $controller->editProfile();
+	});
+
 
 	$router->set404(function()
 	{

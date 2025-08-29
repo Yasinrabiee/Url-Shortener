@@ -5,9 +5,7 @@
 
 		public function handle()
 		{
-			$cookie = isset($_SESSION[_AUTH_NAME]) ? 0 : 1;
-			$userpass = isset($_SESSION[_AUTH_NAME]) ? $_SESSION[_AUTH_NAME] :
-			(isset($_COOKIE[_AUTH_NAME]) ? $_COOKIE[_AUTH_NAME] : '');
+			$userpass = $_COOKIE[_AUTH_NAME] ?? '';
 			
 			if (!empty($userpass))
 			{

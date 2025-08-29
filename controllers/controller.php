@@ -218,5 +218,18 @@
 
 			echo $this->blade->run('passwordForm', compact('error', 'uri'));
 		}
+
+		public function handleProfileForm()
+		{
+			echo $this->blade->run('profile',
+			[
+				'userInfo' => $GLOBALS['userInfo'][0]
+			]);
+		}
+
+		public function editProfile()
+		{
+			$params = [];
+		}
 	}
 ?>
