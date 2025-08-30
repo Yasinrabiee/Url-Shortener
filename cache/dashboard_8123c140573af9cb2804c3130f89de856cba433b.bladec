@@ -55,19 +55,20 @@
  </span>
  <input type="hidden" class="n2m" value="false">
  <div class="page-number-container d-flex align-items-center">
- <small class="text-end">صفحه: </small>
+ <!-- <small class="text-end">صفحه: </small>
  <select class="form-select form-select-sm page-number" dir="ltr">
  
- </select>
+ </select> -->
 
- <small class="text-end text-nowrap">در هر صفحه: </small>
+ <!-- <small class="text-end text-nowrap">در هر صفحه: </small>
  <select class="form-select form-select-sm page-limit" dir="ltr">
+ <option value="5">5</option>
  <option value="15">15</option>
  <option value="50">50</option>
  <option value="100">100</option>
  <option value="200">200</option>
  <option value="10000000" dir="rtl">همه</option>
- </select>
+ </select> -->
  </div>
  </div>
  <div class="table-responsive">
@@ -127,7 +128,8 @@
  </div>
 </div>
 
-<br><br><br><br><br><br><br><br><br><br><br><br>
+<br><br><br><br><br>
+<br><br><br><br><br>
 
 <script>
  const fields = $('.filter');
@@ -145,7 +147,7 @@
  where['uri'] = fields[1].value; 
  where['target'] = fields[2].value; 
  where['add_date'] = fields[3].value;
-
+ console.log($('.page-number').val());
  $.ajax(
  {
  url: '<?php echo \htmlentities(ACC::asset("ajax.php")??'', ENT_QUOTES, 'UTF-8', false); ?>',
@@ -155,7 +157,7 @@
  op: 'list-of-links',
  where: where,
  sortField: sortField,
- orderBy: orderBy 
+ orderBy: orderBy
  },
 
  success: function(records, status)

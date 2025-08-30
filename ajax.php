@@ -5,7 +5,7 @@
 	$middleware->handle();
 
 	$op = ACC::post('op') ?? '';
-
+	
 	if ($op == 'list-of-links')
 	{
 		header('Content-Type: application/json');
@@ -15,14 +15,6 @@
 
 		$whereArray = ['uid' => $userInfo[0]['id']];
 		$whereQ = 'uid = :uid AND ';
-
-		// $where = 
-		// [
-		// 	'id' => value
-		// 	'uri' => value
-		// 	'target' => value
-		// 	'add_date' => value
-		// ];
 
 		foreach ($where as $searchOp => $value)
 		{
