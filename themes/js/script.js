@@ -81,7 +81,3 @@ $('#secure').change(function() {
     $('#password').prop('disabled', true);
   }
 });
-
-$('.filter').on('input' , function(e) {
-  console.log(e.target);
-});

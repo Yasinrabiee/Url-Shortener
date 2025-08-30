@@ -9,13 +9,37 @@
 	if ($op == 'list-of-links')
 	{
 		header('Content-Type: application/json');
+		$where = $_POST['where'];
+		$sortField = ACC::post('sortField');
+		$orderBy = ACC::post('orderBy');
+
+		$whereArray = ['uid' => $userInfo[0]['id']];
+		$whereQ = 'uid = :uid AND ';
+
+		// $where = 
+		// [
+		// 	'id' => value
+		// 	'uri' => value
+		// 	'target' => value
+		// 	'add_date' => value
+		// ];
+
+		foreach ($where as $searchOp => $value)
+		{
+			if (!empty($value))
+			{
+				$whereQ .= "$searchOp LIKE :$searchOp AND ";
+				$whereArray[$searchOp] = '%'.$value.'%';
+			}
+		}
 
 		$params =
 		[
 			'table' => 'link',
 			'columns' => '*',
-			'where' => 'uid = :id',
-			'whereArray' => ['id' => $userInfo[0]['id']]
+			'where' => trim(ACC::str_replace_last('AND', '', $whereQ)),
+			'whereArray' => $whereArray,
+			'order' => "order by $sortField $orderBy"
 		];
 		
 		echo json_encode(DB::select($params));

@@ -9,15 +9,15 @@
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav me-auto">
         <li class="nav-item">
-          <a class="nav-link" href="./">خانه</a>
+          <a class="nav-link" href="{{ ACC::asset('') }}">خانه</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link active" href="">لینک‌های من</a>
+          <a class="nav-link active" href="{{ ACC::asset('links') }}">لینک‌های من</a>
         </li>
       </ul>
       <div class="d-flex">
-        <a href="./profile.php" class="btn btn-primary me-2">پروفایل شما</a>
-        <a href="./logout.php" class="btn btn-danger">خروج</a>
+        <a href="{{ ACC::asset('profile') }}" class="btn btn-primary me-2">پروفایل شما</a>
+        <a href="{{ ACC::asset('logout') }}" class="btn btn-danger">خروج</a>
       </div>
     </div>
   </div>
@@ -82,10 +82,10 @@
             </th>
             <th style="min-width: 100px">
               <input type="search" data-name="id" placeholder="آیدی" 
-              class="form-control form-control-sm filter">
+              class="form-control form-control-sm filter" value="">
               <center>
+                <i class="bi bi-caret-down btn btn-xsm active-order" data-sort="desc"></i>
                 <i class="bi bi-caret-up btn btn-xsm" data-sort="asc"></i>
-                <i class="bi bi-caret-down btn btn-xsm" data-sort="desc"></i>
               </center>
             </th>
 
@@ -93,8 +93,8 @@
               <input type="search" data-name="uri" placeholder="لینک کوتاه" 
               class="form-control form-control-sm filter">
               <center>
-                <i class="bi bi-caret-up btn btn-xsm" data-sort="asc"></i>
                 <i class="bi bi-caret-down btn btn-xsm" data-sort="desc"></i>
+                <i class="bi bi-caret-up btn btn-xsm" data-sort="asc"></i>
               </center>
             </th>
 
@@ -102,22 +102,23 @@
               <input type="search" data-name="target" placeholder="لینک اصلی" 
               class="form-control form-control-sm filter">
               <center>
-                <i class="bi bi-caret-up btn btn-xsm" data-sort="asc"></i>
                 <i class="bi bi-caret-down btn btn-xsm" data-sort="desc"></i>
+                <i class="bi bi-caret-up btn btn-xsm" data-sort="asc"></i>
               </center>
             </th>
 
             <th style="min-width: 100px">
-              <input type="search" data-name="category" placeholder="تاریخ افزودن"
+              <input type="search" data-name="add_date" placeholder="تاریخ افزودن"
               class="form-control form-control-sm filter">
               <center>
-                <i class="bi bi-caret-up btn btn-xsm" data-sort="asc"></i>
                 <i class="bi bi-caret-down btn btn-xsm" data-sort="desc"></i>
+                <i class="bi bi-caret-up btn btn-xsm" data-sort="asc"></i>
               </center>
             </th>
           </tr>
         </thead>
         <tbody>
+
         </tbody>
       </table>
       <div id="waiting"></div>
@@ -126,22 +127,36 @@
     </div>
   </div>
 </div>
-<br><br>
-<br><br>
-<br><br>
-<br><br>
-<br><br>
-<br><br>
+
+<br><br><br><br><br><br><br><br><br><br><br><br>
 
 <script>
-  $('#waiting').html(spinner);
+  const fields = $('.filter');
+
   function loadLinks()
   {
-    $.ajax({
+    $('tbody').empty();
+    $('#waiting').html(spinner);
+
+    const sortField = $('.active-order').parent().siblings('input').data('name');
+    const orderBy = $('.active-order').data('sort');
+
+    const where = {};
+    where['id'] = fields[0].value; 
+    where['uri'] = fields[1].value; 
+    where['target'] = fields[2].value; 
+    where['add_date'] = fields[3].value;
+
+    $.ajax(
+    {
       url: '{{ ACC::asset("ajax.php") }}',
       type: 'POST',
-      data: {
-        op: 'list-of-links'
+      data:
+      {
+        op: 'list-of-links',
+        where: where,
+        sortField: sortField,
+        orderBy: orderBy 
       },
 
       success: function(records, status)
@@ -210,6 +225,17 @@
 
   loadLinks();
 
+  $('.filter').on('input', function()
+  {
+    loadLinks();
+  });
+
+  $('.btn-xsm').click(function()
+  {
+    $('.btn-xsm').removeClass('active-order');
+    $(this).addClass('active-order');
+    loadLinks();
+  });
 </script>
 
 @include('footer')
