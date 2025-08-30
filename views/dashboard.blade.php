@@ -53,12 +53,9 @@
       </span>
       <input type="hidden" class="n2m" value="false">
       <div class="page-number-container d-flex align-items-center">
-        <!-- <small class="text-end">صفحه: </small>
+        <small class="text-end">صفحه: </small>
         <select class="form-select form-select-sm page-number" dir="ltr">
-          <option>1</option>
-          <option>2</option>
-          <option>3</option>
-          <option>4</option>
+          
         </select>
 
         <small class="text-end text-nowrap">در هر صفحه: </small>
@@ -68,7 +65,7 @@
           <option value="100">100</option>
           <option value="200">200</option>
           <option value="10000000" dir="rtl">همه</option>
-        </select> -->
+        </select>
       </div>
     </div>
     <div class="table-responsive">
