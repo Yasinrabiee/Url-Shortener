@@ -84,6 +84,17 @@
 		$controller->deleteLink($id);
 	});
 
+	$router->get('/edit/id/(\d+)', function($id)
+	{
+		$controller = new controller();
+		$controller->editLinkIndex($id);
+	});
+	$router->post('/edit/id/(\d+)', function($id)
+	{
+		$controller = new controller();
+		$controller->editLink($id);
+	});
+
 	$router->set404(function()
 	{
   	header('HTTP/1.1 404 Not Found');

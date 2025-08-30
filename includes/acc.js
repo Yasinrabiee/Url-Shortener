@@ -35,10 +35,6 @@ let spinner = `
 $(function() {
   persianDate();
 
-  $('.sort').append(
-    `<i class="bi bi-caret-down"></i> <i class="bi bi-caret-up"></i>
-  `);
-
   $('.confirm').click(function(e) {
     if (confirm($(this).data('message')))
     {

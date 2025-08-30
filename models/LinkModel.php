@@ -21,9 +21,24 @@
 			return false;
 		}	
 
-		public static function selectOne($uri)
+		public static function update($params)
 		{
-			return ACC::select('link', 'uri', $uri);
+			$dbParams = [];
+			$dbParams['table'] = 'link';
+			$dbParams['where'] = "id = {$params['id']}";
+			$dbParams['fields'] = $params;
+			
+			if (DB::update($dbParams))
+			{
+			 	return true;
+			} 
+
+			return false;
+		}
+
+		public static function selectOne($field, $value)
+		{
+			return ACC::select('link', $field, $value);
 		}
 
 		public static function delete($id)

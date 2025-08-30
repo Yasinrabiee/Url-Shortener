@@ -82,8 +82,8 @@
               <input type="search" data-name="id" placeholder="آیدی" 
               class="form-control form-control-sm filter" value="">
               <center>
-                <i class="bi bi-caret-down btn btn-xsm active-order" data-sort="desc"></i>
-                <i class="bi bi-caret-up btn btn-xsm" data-sort="asc"></i>
+                <i class="bi bi-caret-down btn btn-xsm active-order sort" data-sort="desc"></i>
+                <i class="bi bi-caret-up btn btn-xsm sort" data-sort="asc"></i>
               </center>
             </th>
 
@@ -91,14 +91,23 @@
               <input type="search" data-name="uri" placeholder="لینک کوتاه" 
               class="form-control form-control-sm filter">
               <center>
-                <i class="bi bi-caret-down btn btn-xsm" data-sort="desc"></i>
-                <i class="bi bi-caret-up btn btn-xsm" data-sort="asc"></i>
+                <i class="bi bi-caret-down btn btn-xsm sort" data-sort="desc"></i>
+                <i class="bi bi-caret-up btn btn-xsm sort" data-sort="asc"></i>
               </center>
             </th>
 
             <th style="min-width: 100px">
               <input type="search" data-name="target" placeholder="لینک اصلی" 
               class="form-control form-control-sm filter">
+              <center>
+                <i class="bi bi-caret-down btn btn-xsm sort" data-sort="desc"></i>
+                <i class="bi bi-caret-up btn btn-xsm sort" data-sort="asc"></i>
+              </center>
+            </th>
+
+            <th style="min-width: 100px">
+              <input type="search" data-name="" placeholder="رمز مشاهده"
+              class="form-control form-control-sm" readonly>
               <center>
                 <i class="bi bi-caret-down btn btn-xsm" data-sort="desc"></i>
                 <i class="bi bi-caret-up btn btn-xsm" data-sort="asc"></i>
@@ -109,8 +118,8 @@
               <input type="search" data-name="add_date" placeholder="تاریخ افزودن"
               class="form-control form-control-sm filter">
               <center>
-                <i class="bi bi-caret-down btn btn-xsm" data-sort="desc"></i>
-                <i class="bi bi-caret-up btn btn-xsm" data-sort="asc"></i>
+                <i class="bi bi-caret-down btn btn-xsm sort" data-sort="desc"></i>
+                <i class="bi bi-caret-up btn btn-xsm sort" data-sort="asc"></i>
               </center>
             </th>
           </tr>
@@ -206,6 +215,7 @@
               <td class="text-center">${records[record].id}</td>
               <td class="text-center">${records[record].uri}</td>
               <td class="text-center">${records[record].target}</td>
+              <td class="text-center">${(records[record].password != null ? '<i class="bi bi-check2 text-success fs-4"></i>' : '<i class="bi bi-x-lg text-danger fs-4"></i>')}</td>
               <td class="text-center">${records[record].add_date}</td>
             </tr>
               `;
@@ -229,7 +239,7 @@
     loadLinks();
   });
 
-  $('.btn-xsm').click(function()
+  $('.sort').click(function()
   {
     $('.btn-xsm').removeClass('active-order');
     $(this).addClass('active-order');

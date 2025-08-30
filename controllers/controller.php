@@ -183,7 +183,7 @@
 
 		public function redirect($uri)
 		{
-			$recordInfo = Link::selectOne($uri) ?? '';
+			$recordInfo = Link::selectOne('uri', $uri) ?? '';
 			if (!empty($recordInfo))
 			{
 				if (!empty($recordInfo['password']))
@@ -205,7 +205,7 @@
 		{
 			$password = !empty(ACC::post('password')) ? md5(ACC::post('password')) : '';
 			$uri = ACC::post('uri');
-			$recordInfo = Link::selectOne($uri);
+			$recordInfo = Link::selectOne('uri', $uri);
 
 			if ($password == $recordInfo['password'])
 			{
@@ -282,5 +282,56 @@
 				header('location:' . ACC::asset('/links?delete=error'));
 			}
 		}
+
+		public function editLinkIndex($id)
+		{
+			$recordInfo = Link::selectOne('id', $id);
+			echo $this->blade->run('editLink', compact('recordInfo'));
+		}
+
+		public function editLink($id)
+		{
+			$params = [];
+			$params['id'] = $id;
+			$params['uri'] = ACC::post('uri'); 
+			$params['target'] = ACC::post('target'); 
+			$params['password'] = !empty(ACC::post('password')) ? md5(ACC::post('password')) : '';
+
+			if (empty($params['target']) || empty($params['uri']))
+			{
+				$error = ACC::error('لطفا فیلدهای الزامی را پر نمایید.');
+			}
+			else
+			{
+				if (!filter_var($params['target'], FILTER_VALIDATE_URL))
+				{
+					$error = ACC::error('لینک مورد نظر شما نامعتبر است!');
+				}
+				else
+				{
+					if (in_array($params['target'], _SITES_BLACK_LIST))
+					{
+						$error = ACC::error('لینک دادن به سایت های غیرمجاز ممنوع است!');
+					}
+					else
+					{
+						# Now Edit record
+						if (Link::update($params))
+						{
+							$success = ACC::success('لینک با موفقیت ویرایش شد.');
+						}
+						else
+						{
+							$error = ACC::error('مشکلی در ویرایش لینک به وجود آمد...');
+						}
+					}
+				}
+			}
+			echo $this->blade->run('editLink',
+			[
+				'error' => $error ?? '',
+				'success' => $success ?? ''
+			]);
+		} 
 	}
 ?>
