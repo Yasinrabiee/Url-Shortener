@@ -11,6 +11,6 @@
 - Styling: Fast Bootstrap
 - Language: PHP
 - Database: Mysql (Maria DB)
-- Template engine: bladeOne
-- App router:
+- Template engine: eftec/bladeOne
+- App router: bramus/router
 - Architecture: MVC
