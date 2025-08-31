@@ -7,4 +7,10 @@
 5. 📊 Status of the links
 6. 🎬 CURD operation on the links
 
-### Technologys 
+### ⚡ Tech Stack
+- Styling: Fast Bootstrap
+- Language: PHP
+- Database: Mysql (Maria DB)
+- Template engine: bladeOne
+- App router:
+- Architecture: MVC
