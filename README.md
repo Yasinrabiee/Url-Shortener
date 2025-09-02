@@ -14,5 +14,3 @@
 - Template engine: eftec/bladeOne
 - App router: bramus/router
 - Architecture: MVC
-
-###  Project Structure
