@@ -8,7 +8,7 @@
 - 📊 Status of the links
 - 🎬 CURD operation on the links
 
-⚡ Tech Stack
+⚡ Tech Stack:
 - Styling: Fast Bootstrap
 - Language: PHP
 - Database: Mysql (Maria DB)
