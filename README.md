@@ -4,9 +4,9 @@
 - 📬 Sign-up
 - 📭 Sign-in
 - 🔐 Create secure link
-4. 🧊 Advanced AJAX list
-5. 📊 Status of the links
-6. 🎬 CURD operation on the links
+- 🧊 Advanced AJAX list
+- 📊 Status of the links
+- 🎬 CURD operation on the links
 
 ⚡ Tech Stack
 - Styling: Fast Bootstrap
