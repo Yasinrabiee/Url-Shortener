@@ -2,7 +2,6 @@
 
 	class Auth
 	{
-
 		public function handle()
 		{
 			$userpass = $_COOKIE[_AUTH_NAME] ?? '';
