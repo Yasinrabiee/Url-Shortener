@@ -11,7 +11,7 @@
 ⚡ Tech Stack:
 - Styling: Fast Bootstrap (5.3)
 - Language: PHP
-- Database: Mysql (Maria DB)
+- Database: Mysql
 - Template engine: eftec/bladeOne
 - App router: bramus/router
 - Architecture: MVC
